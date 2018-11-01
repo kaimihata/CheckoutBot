@@ -1,3 +1,3 @@
 # CheckoutBot
 
-# Allows users to secure items from Supreme
+Allows users to secure items from Supreme
