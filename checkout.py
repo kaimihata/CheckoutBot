@@ -1,9 +1,13 @@
 import sys
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 # Initializes the chromewebdriver
-driver = webdriver.Chrome(executable_path=r"/Users/kaimihata/Desktop/CheckoutBot/chromedriver")
+if os.name == 'nt':
+    driver = webdriver.Chrome(executable_path=r"./windows/chromedriver.exe")
+elif os.name == 'mac':
+    driver = webdriver.Chrome(executable_path=r"./osx/chromedriver")
 keyword = "Crew"
 usr_color = "Black"
 category = "accessories"
