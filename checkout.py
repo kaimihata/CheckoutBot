@@ -2,12 +2,15 @@ import sys
 import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from seleniumrequests import Chrome
 
 # Initializes the chromewebdriver
+print(os.name)
 if os.name == 'nt':
-    driver = webdriver.Chrome(executable_path=r"./windows/chromedriver.exe")
-elif os.name == 'mac':
-    driver = webdriver.Chrome(executable_path=r"./osx/chromedriver")
+    driver = Chrome(executable_path=r"./windows/chromedriver.exe")
+elif os.name == 'posix':
+    driver = Chrome(executable_path=r"./osx/chromedriver")
+
 keyword = "Crew"
 usr_color = "Black"
 category = "accessories"
