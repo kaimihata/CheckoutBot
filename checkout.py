@@ -10,10 +10,10 @@ if os.name == 'nt':
     driver = Chrome(executable_path=r"./windows/chromedriver.exe")
 elif os.name == 'posix':
     driver = Chrome(executable_path=r"./osx/chromedriver")
-
-keyword = "Crew"
-usr_color = "Black"
-category = "accessories"
+r = driver.request('GET', 'https://www.google.com/')
+keyword = "Casino"
+usr_color = "Creen"
+category = "jackets"
 driver.get("https://www.supremenewyork.com/shop/all/" + category)
 items = driver.find_elements_by_xpath(".//a[contains(text(), " + "'" + keyword + "'" + ")]")
 colors = []
@@ -54,6 +54,18 @@ except:
 
 token = driver.find_element_by_xpath("//meta[@name ='csrf-token']").get_attribute("content")
 code = driver.find_element_by_xpath("//form[@id ='cart-addf']").get_attribute("action")
+utf = "%E2%9C%93"
+
 print(size_codes)
 print("Token: " + token)
 print("Code: " + code)
+print("Code substr: " + code[36:42])
+PARAMS = {'utf-8': utf,
+          'X-CSRF-Token': token,
+          'st': code[36:42],
+          's': size_codes[0][2:],
+          'commit': 'add to cart'}
+
+r = driver.request('POST', code, PARAMS)
+
+print(r)
